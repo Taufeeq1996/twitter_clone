@@ -12,10 +12,15 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Car',
+            name='Post',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
+                ('name', models.CharField(db_index=True, default='Anonymous', max_length=15, verbose_name='Name')),
+                ('body', models.CharField(blank=True, db_index=True, max_length=140, null=True, verbose_name='Body')),
+                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Created DateTime')),
             ],
+            options={
+                'db_table': 'post',
+            },
         ),
     ]
